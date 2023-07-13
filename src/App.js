@@ -1,24 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
-
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
+import { FileProvider } from './FileContext';
+import FileUpload from './Pages/FileUpload';
+import FileView from './Pages/FileView';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <FileProvider>
+      <Router>
+        <div>
+          <nav>
+          <ul>
+          <li>
+                <Link to="/upload">Upload Files</Link>
+              </li>
+              <li>
+                <Link to="/view">View Files</Link>
+              </li>
+            </ul>
+          </nav>
+          <Routes>
+            <Route path = "/upload" element= {<FileUpload/>} />
+           <Route path = "/view" element = {<FileView/>}/>
+          </Routes>
+        </div>
+      </Router>
+    </FileProvider>
   );
 }
 
